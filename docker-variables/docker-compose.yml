@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  test:
+    build:
+      context: .
+    image: test/on-run-3
+    environment:
+      # Add an `x` to /test.txt
+      DOCKER_ON_READY: echo x >> /test.txt

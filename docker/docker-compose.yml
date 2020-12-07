@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  test:
+    build:
+      context: .
+    image: test/on-run-1

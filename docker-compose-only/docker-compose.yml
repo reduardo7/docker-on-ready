@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  test:
+    image: ubuntu
+    command: bash -c 'set -x; set +e; while true; do cat /test.txt; sleep 3; done'
+    # https://docs.docker.com/compose/compose-file/#healthcheck
+    healthcheck:
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      test: "/healthchecker-runner.sh"
+    volumes:
+      # Base script
+      - ./docker/healthchecker-runner.sh:/healthchecker-runner.sh:ro
+      # Heath Check script
+      - ./docker/healthcheck.sh:/healthcheck.sh:ro
+      # Init Script
+      - ./docker/init.sh:/init.sh:ro
